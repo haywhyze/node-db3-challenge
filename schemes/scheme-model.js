@@ -27,6 +27,19 @@ function remove(id) {
   return db("schemes")
     .where("id", Number(id))
     .del();
+}
+
+function update(changes, id) {
+  return db("schemes")
+    .where("id", Number(id))
+    .update(changes)
+    .then(item => {
+        if(item > 0) {
+           return findById(id)
+        } else {
+            return 'No scheme available'
+        }
+    })
 } 
 
 module.exports = {
@@ -35,4 +48,5 @@ module.exports = {
   findSteps,
   add,
   remove,
+  update
 }
