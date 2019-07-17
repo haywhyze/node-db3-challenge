@@ -23,9 +23,16 @@ function add(scheme) {
     .then(ids => ({ id: ids[0] }));
 }
 
+function remove(id) {
+  return db("schemes")
+    .where("id", Number(id))
+    .del();
+} 
+
 module.exports = {
   find,
   findById,
   findSteps,
   add,
+  remove,
 }
