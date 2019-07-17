@@ -17,8 +17,15 @@ function findSteps(id) {
     .where("scheme_id", id);
 }
 
+function add(scheme) {
+  return db("schemes")
+    .insert(scheme)
+    .then(ids => ({ id: ids[0] }));
+}
+
 module.exports = {
   find,
   findById,
   findSteps,
+  add,
 }
